@@ -65,7 +65,6 @@ class App(tk.Tk):
 
         self.filetree.treetoggle_button = tk.Button(self.filetree, text="FILE TREE ⮟", anchor="w", bd=0, relief='flat', command=self.tree_toggle, width=31)
         self.filetree.treetoggle_button.pack(side='top', fill='both')
-        print(self.panel.sash_coord(0))
         # --------------- Function Library ------------------#
     def enable_bindings(self, option):
         self.mode = option
@@ -73,12 +72,10 @@ class App(tk.Tk):
             self.nb.bind("<control-w>", self.close_tab)
             self.bind("<Control-s>", self.save_binding)
             self.bind("<MouseWheel>", self.nb.mousewheel_move)
-#            self.bind("<Key>", self.nb.show_lines)
         else:
             self.filetree.tv.bind("<ButtonRelease-1>", self.on_tv_click)
             self.bind("<Control-s>", self.save_binding)
             self.bind("<MouseWheel>", self.nb.mousewheel_move)
-#            self.bind("<Key>", self.nb.show_lines)
             self.bind("<Control-Shift-S>", self.save_binding)
 
     def save_binding(self):
@@ -146,7 +143,6 @@ class App(tk.Tk):
                 self.nb.current_tab().textbox.insert('end', file.read())
                 # Update hash
                 self.nb.current_tab().status = md5(self.nb.current_tab().textbox.get(1.0, 'end').encode('utf-8'))
-#                self.nb.show_lines(e=None)
                 self.status_bar.setText(file_dir)
             except:
                 return
@@ -166,8 +162,6 @@ class App(tk.Tk):
         self.filetree.tv.pack(expand='true', anchor="n", fill='both')
         self.filetree.pack_forget()
         self.filetree.pack(side='left', fill='both')
-
-#        self.nb.current_tab.configure(state='disabled')
         self.mode = "folder"   
 
     def save_changes(self, tab):
@@ -186,7 +180,6 @@ class App(tk.Tk):
             # else don't save.
             else:
                 pass
-
         return True
 
     def save_file(self, *args):
